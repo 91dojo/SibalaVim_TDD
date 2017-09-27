@@ -39,13 +39,18 @@ namespace SibalaVim_TDD
         {
             get
             {
-                if (this._dices.All(x => x == _dices.First()))
+                if (IsOneColor())
                 {
                     return "One Color";
                 }
 
                 return "No Points";
             }
+        }
+
+        private bool IsOneColor()
+        {
+            return this._dices.All(x => x == _dices.First());
         }
     }
 }
