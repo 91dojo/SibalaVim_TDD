@@ -13,6 +13,8 @@ namespace SibalaVim_TDD
             this._dices = new List<int> { i0, i1, i2, i3 };
         }
 
+        public int MaxPoint { get; set; }
+
         public string GetOutput()
         {
             var diceGroups = _dices.GroupBy(x => x);
@@ -37,6 +39,7 @@ namespace SibalaVim_TDD
         private int GetPoints(IEnumerable<IGrouping<int, int>> diceGroups)
         {
             var pair = diceGroups.Where(x => x.Count() == 2).Min(x => x.Key);
+            this.MaxPoint = _dices.Where(x => x != pair).Max();
             return _dices.Where(x => x != pair).Sum();
         }
         private bool IsOneColor()
@@ -54,12 +57,19 @@ namespace SibalaVim_TDD
         public void NoPoints()
         {
             DiceOutputShouldBe("No Points", 1, 2, 3, 4);
+            MaxPointShouldBe(0);
+        }
+
+        private void MaxPointShouldBe(int expected)
+        {
+            Assert.AreEqual(expected, dice.MaxPoint);
         }
 
         [TestMethod]
         public void NormalPoints_1123_is_5_Points()
         {
             DiceOutputShouldBe("5 Points", 1, 1, 2, 3);
+            MaxPointShouldBe(3);
         }
 
         [TestMethod]
