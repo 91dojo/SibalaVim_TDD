@@ -10,8 +10,13 @@ namespace SibalaVim_TDD
         [TestMethod]
         public void OneColor()
         {
-            var dice = new Dice(1, 1, 1, 1);
-            Assert.AreEqual("One Color", dice.Output);
+            DiceOutputShouldBe("One Color", 1, 1, 1, 1);
+        }
+
+        private static void DiceOutputShouldBe(string expected, int i0, int i1, int i2, int i3)
+        {
+            var dice = new Dice(i0, i1, i2, i3);
+            Assert.AreEqual(expected, dice.Output);
         }
     }
 
