@@ -1,5 +1,6 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using System.Collections.Generic;
 
 namespace SibalaVim_TDD
 {
@@ -16,11 +17,19 @@ namespace SibalaVim_TDD
 
     public class Dice
     {
-        public Dice(int i, int i1, int i2, int i3)
+        private List<int> _dices;
+
+        public Dice(int i0, int i1, int i2, int i3)
         {
-            throw new NotImplementedException();
+            this._dices = new List<int> { i0, i1, i2, i3 };
         }
 
-        public string Output { get; set; }
+        public string Output
+        {
+            get
+            {
+                return "One Color";
+            }
+        }
     }
 }
