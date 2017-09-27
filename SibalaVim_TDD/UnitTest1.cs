@@ -28,7 +28,7 @@ namespace SibalaVim_TDD
         private static void DiceOutputShouldBe(string expected, int i0, int i1, int i2, int i3)
         {
             var dice = new Dice(i0, i1, i2, i3);
-            Assert.AreEqual(expected, dice.Output);
+            Assert.AreEqual(expected, dice.GetOutput());
         }
     }
 
@@ -41,17 +41,21 @@ namespace SibalaVim_TDD
             this._dices = new List<int> { i0, i1, i2, i3 };
         }
 
-        public string Output
+        public string GetOutput()
         {
-            get
+            if (_dices.GroupBy(x => x).Max(x => x.Count() == 2))
             {
-                if (IsOneColor())
-                {
-                    return "One Color";
-                }
-
-                return "No Points";
+                var pair = _dices.GroupBy(x => x).Where(x => x.Count() == 2).First();
+                var points = _dices.Where(x => x != pair.First()).Sum();
+                return points + " Points";
             }
+
+            if (IsOneColor())
+            {
+                return "One Color";
+            }
+
+            return "No Points";
         }
 
         private bool IsOneColor()
