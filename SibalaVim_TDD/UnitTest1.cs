@@ -25,6 +25,11 @@ namespace SibalaVim_TDD
             DiceOutputShouldBe("5 Points", 1, 1, 2, 3);
         }
 
+        [TestMethod]
+        public void NormalPoints_4242_is_8_points()
+        {
+            DiceOutputShouldBe("8 Points", 4,2,4,2);
+        }
         private static void DiceOutputShouldBe(string expected, int i0, int i1, int i2, int i3)
         {
             var dice = new Dice(i0, i1, i2, i3);
@@ -59,9 +64,8 @@ namespace SibalaVim_TDD
 
         private int GetPoints(IEnumerable<IGrouping<int, int>> diceGroups)
         {
-            var pair = diceGroups.Where(x => x.Count() == 2).First();
-            var points = _dices.Where(x => x != pair.First()).Sum();
-            return points;
+            var pair = diceGroups.Where(x => x.Count() == 2).Min(x => x.Key);
+            return _dices.Where(x => x != pair).Sum();
         }
 
         private static bool IsNormalPoints(IEnumerable<IGrouping<int, int>> diceGroups)
