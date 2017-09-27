@@ -19,6 +19,12 @@ namespace SibalaVim_TDD
             DiceOutputShouldBe("No Points", 1, 2, 3, 4);
         }
 
+        [TestMethod]
+        public void NormalPoints_1123_is_5_Points()
+        {
+            DiceOutputShouldBe("5 Points", 1, 1, 2, 3);
+        }
+
         private static void DiceOutputShouldBe(string expected, int i0, int i1, int i2, int i3)
         {
             var dice = new Dice(i0, i1, i2, i3);
