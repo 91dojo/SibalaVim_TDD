@@ -43,11 +43,10 @@ namespace SibalaVim_TDD
 
         public string GetOutput()
         {
-            if (_dices.GroupBy(x => x).Max(x => x.Count() == 2))
+            var diceGroups = _dices.GroupBy(x => x);
+            if (IsNormalPoints(diceGroups))
             {
-                var pair = _dices.GroupBy(x => x).Where(x => x.Count() == 2).First();
-                var points = _dices.Where(x => x != pair.First()).Sum();
-                return points + " Points";
+                return GetPoints(diceGroups) + " Points";
             }
 
             if (IsOneColor())
@@ -56,6 +55,18 @@ namespace SibalaVim_TDD
             }
 
             return "No Points";
+        }
+
+        private int GetPoints(IEnumerable<IGrouping<int, int>> diceGroups)
+        {
+            var pair = diceGroups.Where(x => x.Count() == 2).First();
+            var points = _dices.Where(x => x != pair.First()).Sum();
+            return points;
+        }
+
+        private static bool IsNormalPoints(IEnumerable<IGrouping<int, int>> diceGroups)
+        {
+            return diceGroups.Max(x => x.Count() == 2);
         }
 
         private bool IsOneColor()
