@@ -50,14 +50,17 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Dice.cs" />
     <Compile Include="DiceComparer.cs" />
+    <Compile Include="DiceComparerTests.cs" />
+    <Compile Include="IDiceHandler.cs" />
     <Compile Include="NoPointsComparer.cs" />
     <Compile Include="NoPointsHandler.cs" />
     <Compile Include="NormalPointsComparer.cs" />
     <Compile Include="NormalPointsHandler.cs" />
     <Compile Include="OneColorComparer.cs" />
     <Compile Include="OneColorHandler.cs" />
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="DiceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Choose>
