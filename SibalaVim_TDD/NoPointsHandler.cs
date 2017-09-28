@@ -9,7 +9,7 @@
             _dice = dice;
         }
 
-        public string SetNoPointsResult()
+        public string SetResult()
         {
             return _dice.Output = "No Points";
         }

@@ -1,3 +1,5 @@
+using System.Linq;
+
 namespace SibalaVim_TDD
 {
     public class OneColorHandler
@@ -9,7 +11,7 @@ namespace SibalaVim_TDD
             _dice = dice;
         }
 
-        public void SetOneColorResult()
+        public void SetResult()
         {
             _dice.MaxPoint = _dice._dices.First();
             _dice.Points = _dice._dices.First();

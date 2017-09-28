@@ -6,7 +6,7 @@ namespace SibalaVim_TDD
 {
     public class Dice
     {
-        private List<int> _dices;
+        public List<int> _dices;
 
         public Dice(int i0, int i1, int i2, int i3)
         {
@@ -25,13 +25,13 @@ namespace SibalaVim_TDD
             switch (maxCountOfSamePoint)
             {
                 case 2:
-                    new NormalPointsHandler(this).SetNormalPointsResult();
+                    new NormalPointsHandler(this).SetResult();
                     break;
                 case 4:
-                    new OneColorHandler(this).SetOneColorResult();
+                    new OneColorHandler(this).SetResult();
                     break;
                 default:
-                    new NoPointsHandler(this).SetNoPointsResult();
+                    new NoPointsHandler(this).SetResult();
                     break;
             }
         }
