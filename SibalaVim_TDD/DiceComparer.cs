@@ -8,23 +8,27 @@ namespace SibalaVim_TDD
         {
             if (dice1.Type == dice2.Type)
             {
-                if (dice1.Type == DiceType.OneColor)
-                {
-                    //1 > 4 > 6 > 5 > 3 > 2
-                    var comparer = new OneColorComparer();
-                    return comparer.Compare(dice1, dice2);
-                }
-
-                if (dice1.Type == DiceType.NormalPoints)
-                {
-                    var comparer = new NormalPointsComparer();
-                    return comparer.Compare(dice1, dice2);
-                }
-
-                return 0;
+                return GetComparer(dice1.Type).Compare(dice1, dice2);
             }
 
             return dice1.Type - dice2.Type;
+        }
+
+        private static IComparer<Dice> GetComparer(DiceType type)
+        {
+            switch (type)
+            {
+                case DiceType.OneColor:
+                    //1 > 4 > 6 > 5 > 3 > 2
+                    return new OneColorComparer();
+
+                case DiceType.NormalPoints:
+                    return new NormalPointsComparer();
+
+                case DiceType.NoPoints:
+                    return new NoPointsComparer();
+            }
+            return null;
         }
     }
 }
