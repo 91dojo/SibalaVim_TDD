@@ -141,9 +141,12 @@ namespace SibalaVim_TDD
         [TestMethod]
         public void NormalPoints_should_larger_than_NoPoints()
         {
-            var normalPointDice = new Dice(6, 6, 3, 2);
-            var noPointDice = new Dice(1, 2, 3, 4);
-            var result = new DiceComparer().Compare(normalPointDice, noPointDice);
+            FirstShouldLargerThanSecond(new Dice(6, 6, 3, 2), new Dice(1, 2, 3, 4));
+        }
+
+        private static void FirstShouldLargerThanSecond(Dice dice1, Dice dice2)
+        {
+            var result = new DiceComparer().Compare(dice1, dice2);
             Assert.IsTrue(result > 0);
         }
 
