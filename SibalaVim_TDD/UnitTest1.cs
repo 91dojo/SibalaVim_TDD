@@ -29,6 +29,7 @@ namespace SibalaVim_TDD
             {
                 this.MaxPoint = _dices.First();
                 this.Points = _dices.First();
+                this.Type = DiceType.OneColor;
                 return "One Color";
             }
 
@@ -95,6 +96,7 @@ namespace SibalaVim_TDD
             DiceOutputShouldBe("8 Points", 4, 2, 4, 2);
             MaxPointShouldBe(4);
             PointsShouldBe(8);
+            TypeShouldBe(DiceType.NormalPoints);
         }
 
         [TestMethod]
@@ -103,6 +105,7 @@ namespace SibalaVim_TDD
             DiceOutputShouldBe("One Color", 1, 1, 1, 1);
             MaxPointShouldBe(1);
             PointsShouldBe(1);
+            TypeShouldBe(DiceType.OneColor);
         }
 
         private void PointsShouldBe(int expected)
@@ -120,6 +123,7 @@ namespace SibalaVim_TDD
     public enum DiceType
     {
         NoPoints,
-        NormalPoints
+        NormalPoints,
+        OneColor
     }
 }
