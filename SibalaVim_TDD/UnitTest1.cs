@@ -15,6 +15,7 @@ namespace SibalaVim_TDD
 
         public int MaxPoint { get; set; }
         public int Points { get; set; }
+        public DiceType Type { get; set; }
 
         public string GetOutput()
         {
@@ -65,6 +66,12 @@ namespace SibalaVim_TDD
             DiceOutputShouldBe("No Points", 1, 2, 3, 4);
             MaxPointShouldBe(0);
             PointsShouldBe(0);
+            TypeShouldBe(DiceType.NoPoints);
+        }
+
+        private void TypeShouldBe(DiceType expected)
+        {
+            Assert.AreEqual(expected, dice.Type);
         }
 
         private void MaxPointShouldBe(int expected)
@@ -106,5 +113,10 @@ namespace SibalaVim_TDD
             dice = new Dice(i0, i1, i2, i3);
             Assert.AreEqual(expected, dice.GetOutput());
         }
+    }
+
+    public enum DiceType
+    {
+        NoPoints
     }
 }
