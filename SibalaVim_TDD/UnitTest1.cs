@@ -4,7 +4,6 @@ using System.Linq;
 
 namespace SibalaVim_TDD
 {
-
     public class Dice
     {
         private List<int> _dices;
@@ -137,6 +136,15 @@ namespace SibalaVim_TDD
         public void Both_NoPoints_Should_Equal()
         {
             FirstShouldEqualToSecond(new Dice(1, 2, 3, 4), new Dice(1, 2, 3, 4));
+        }
+
+        [TestMethod]
+        public void NormalPoints_should_larger_than_NoPoints()
+        {
+            var normalPointDice = new Dice(6, 6, 3, 2);
+            var noPointDice = new Dice(1, 2, 3, 4);
+            var result = new DiceComparer().Compare(normalPointDice, noPointDice);
+            Assert.IsTrue(result > 0);
         }
 
         private static void FirstShouldEqualToSecond(Dice dice1, Dice dice2)
