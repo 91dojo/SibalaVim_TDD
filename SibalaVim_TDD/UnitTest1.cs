@@ -136,10 +136,18 @@ namespace SibalaVim_TDD
         [TestMethod]
         public void Both_NoPoints_Should_Equal()
         {
-            var dice1 = new Dice(1, 2, 3, 4);
-            var dice2 = new Dice(1, 2, 3, 4);
-            int result = new DiceComparer().Compare(dice1, dice2);
+            FirstShouldEqualToSecond(new Dice(1, 2, 3, 4), new Dice(1, 2, 3, 4));
+        }
+
+        private static void FirstShouldEqualToSecond(Dice dice1, Dice dice2)
+        {
+            var result = CompareResult(dice1, dice2);
             Assert.IsTrue(result == 0);
+        }
+
+        private static int CompareResult(Dice dice1, Dice dice2)
+        {
+            return new DiceComparer().Compare(dice1, dice2);
         }
     }
 
