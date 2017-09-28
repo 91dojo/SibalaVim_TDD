@@ -162,11 +162,16 @@ namespace SibalaVim_TDD
             FirstShouldLargerThanSecond(new Dice(5, 5, 5, 5), new Dice(2, 2, 2, 2));
         }
 
-
         [TestMethod]
         public void OneColor_compare_1_larger_than_4()
         {
             FirstShouldLargerThanSecond(new Dice(1, 1, 1, 1), new Dice(4, 4, 4, 4));
+        }
+
+        [TestMethod]
+        public void OneColor_compare_4_larger_than_6()
+        {
+            FirstShouldLargerThanSecond(new Dice(4, 4, 4, 4), new Dice(6, 6, 6, 6));
         }
 
         private static void FirstShouldBeSmallerThanSecond(Dice dice1, Dice dice2)
