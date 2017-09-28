@@ -20,20 +20,27 @@ namespace SibalaVim_TDD
 
         private void Sibala()
         {
-            var maxCountOfSamePoint = _dices.GroupBy(x => x).Max(x => x.Count());
+            GetDiceHandler().SetResult();
+        }
 
-            switch (maxCountOfSamePoint)
+        private IDiceHandler GetDiceHandler()
+        {
+            IDiceHandler handler;
+            switch (_dices.GroupBy(x => x).Max(x => x.Count()))
             {
                 case 2:
-                    new NormalPointsHandler(this).SetResult();
+                    handler = new NormalPointsHandler(this);
                     break;
+
                 case 4:
-                    new OneColorHandler(this).SetResult();
+                    handler = new OneColorHandler(this);
                     break;
+
                 default:
-                    new NoPointsHandler(this).SetResult();
+                    handler = new NoPointsHandler(this);
                     break;
             }
+            return handler;
         }
 
         public string Output { get; set; }
@@ -42,6 +49,11 @@ namespace SibalaVim_TDD
         {
             return this._dices.All(x => x == _dices.First());
         }
+    }
+
+    internal interface IDiceHandler
+    {
+        void SetResult();
     }
 
     [TestClass]

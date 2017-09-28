@@ -1,6 +1,6 @@
 ﻿namespace SibalaVim_TDD
 {
-    public class NoPointsHandler
+    public class NoPointsHandler : IDiceHandler
     {
         private Dice _dice;
 
@@ -9,9 +9,9 @@
             _dice = dice;
         }
 
-        public string SetResult()
+        public void SetResult()
         {
-            return _dice.Output = "No Points";
+            _dice.Output = "No Points";
         }
     }
 }

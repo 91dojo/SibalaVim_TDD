@@ -2,7 +2,7 @@ using System.Linq;
 
 namespace SibalaVim_TDD
 {
-    public class NormalPointsHandler
+    public class NormalPointsHandler : IDiceHandler
     {
         private Dice _dice;
 

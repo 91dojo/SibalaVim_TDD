@@ -2,7 +2,7 @@ using System.Linq;
 
 namespace SibalaVim_TDD
 {
-    public class OneColorHandler
+    public class OneColorHandler : IDiceHandler
     {
         private Dice _dice;
 
