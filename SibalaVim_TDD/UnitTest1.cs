@@ -44,7 +44,8 @@ namespace SibalaVim_TDD
             var pair = diceGroups.Where(x => x.Count() == 2).Min(x => x.Key);
             var points = _dices.Where(x => x != pair);
             this.MaxPoint = points.Max();
-            return points.Sum();
+            this.Points = points.Sum();
+            return this.Points;
         }
 
         private bool IsOneColor()
@@ -82,6 +83,7 @@ namespace SibalaVim_TDD
         {
             DiceOutputShouldBe("8 Points", 4, 2, 4, 2);
             MaxPointShouldBe(4);
+            PointsShouldBe(8);
         }
 
         [TestMethod]
