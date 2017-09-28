@@ -25,41 +25,18 @@ namespace SibalaVim_TDD
             switch (maxCountOfSamePoint)
             {
                 case 2:
-                    SetNormalPointsResult();
+                    new NormalPointsHandler(this).SetNormalPointsResult();
                     break;
                 case 4:
-                    SetOneColorResult();
+                    new OneColorHandler(this).SetOneColorResult();
                     break;
                 default:
-                    SetNoPointsResult();
+                    new NoPointsHandler(this).SetNoPointsResult();
                     break;
             }
         }
 
-        private string SetNoPointsResult()
-        {
-            return this.Output = "No Points";
-        }
-
         public string Output { get; set; }
-
-        private void SetOneColorResult()
-        {
-            this.MaxPoint = _dices.First();
-            this.Points = _dices.First();
-            this.Type = DiceType.OneColor;
-            this.Output = "One Color";
-        }
-
-        private void SetNormalPointsResult()
-        {
-            var pair = _dices.GroupBy(x => x).Where(x => x.Count() == 2).Min(x => x.Key);
-            var points = _dices.Where(x => x != pair);
-            this.MaxPoint = points.Max();
-            this.Points = points.Sum();
-            this.Type = DiceType.NormalPoints;
-            this.Output = this.Points + " Points";
-        }
 
         private bool IsOneColor()
         {

@@ -52,8 +52,11 @@
   <ItemGroup>
     <Compile Include="DiceComparer.cs" />
     <Compile Include="NoPointsComparer.cs" />
+    <Compile Include="NoPointsHandler.cs" />
     <Compile Include="NormalPointsComparer.cs" />
+    <Compile Include="NormalPointsHandler.cs" />
     <Compile Include="OneColorComparer.cs" />
+    <Compile Include="OneColorHandler.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
