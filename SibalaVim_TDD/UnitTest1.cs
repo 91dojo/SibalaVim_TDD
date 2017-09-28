@@ -161,8 +161,8 @@ namespace SibalaVim_TDD
 
     public enum DiceType
     {
-        NoPoints,
-        NormalPoints,
-        OneColor
+        NoPoints = 0,
+        NormalPoints = 1,
+        OneColor = 2,
     }
 }
