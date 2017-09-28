@@ -2,17 +2,16 @@
 
 namespace SibalaVim_TDD
 {
-    internal class DiceComparer:IComparer<Dice>
+    internal class DiceComparer : IComparer<Dice>
     {
 
         public int Compare(Dice dice1, Dice dice2)
         {
-            if (dice1.Type== DiceType.NormalPoints && dice2.Type== DiceType.NoPoints)
+            if (dice1.Type == dice2.Type)
             {
-                return 1;
+                return dice1.Points - dice2.Points;
             }
-
-            return 0;
+            return dice1.Type - dice2.Type;
         }
     }
 }
