@@ -64,6 +64,7 @@ namespace SibalaVim_TDD
         {
             DiceOutputShouldBe("No Points", 1, 2, 3, 4);
             MaxPointShouldBe(0);
+            PointsShouldBe(0);
         }
 
         private void MaxPointShouldBe(int expected)
@@ -76,6 +77,7 @@ namespace SibalaVim_TDD
         {
             DiceOutputShouldBe("5 Points", 1, 1, 2, 3);
             MaxPointShouldBe(3);
+            PointsShouldBe(5);
         }
 
         [TestMethod]
