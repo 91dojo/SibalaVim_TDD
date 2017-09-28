@@ -174,6 +174,12 @@ namespace SibalaVim_TDD
             FirstShouldLargerThanSecond(new Dice(4, 4, 4, 4), new Dice(6, 6, 6, 6));
         }
 
+        [TestMethod]
+        public void NormalPoints_compare_of_same_points()
+        {
+            FirstShouldBeSmallerThanSecond(new Dice(6, 6, 3, 2), new Dice(5, 5, 4, 1));
+        }
+
         private static void FirstShouldBeSmallerThanSecond(Dice dice1, Dice dice2)
         {
             var result = new DiceComparer().Compare(dice1, dice2);

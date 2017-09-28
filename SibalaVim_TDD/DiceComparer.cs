@@ -13,6 +13,15 @@ namespace SibalaVim_TDD
                     //1 > 4 > 6 > 5 > 3 > 2
                     return CompareOfOneColor(dice1, dice2);
                 }
+
+                if (dice1.Type == DiceType.NormalPoints)
+                {
+                    if (dice1.Points == dice2.Points)
+                    {
+                        return dice1.MaxPoint - dice2.MaxPoint;
+                    }
+                }
+
                 return dice1.Points - dice2.Points;
             }
             return dice1.Type - dice2.Type;
@@ -20,7 +29,7 @@ namespace SibalaVim_TDD
 
         private static int CompareOfOneColor(Dice dice1, Dice dice2)
         {
-            var weights = new List<int> {2, 3, 5, 6, 4, 1};
+            var weights = new List<int> { 2, 3, 5, 6, 4, 1 };
             return weights.IndexOf(dice1.Points) - weights.IndexOf(dice2.Points);
         }
     }
