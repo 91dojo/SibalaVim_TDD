@@ -16,15 +16,22 @@ namespace SibalaVim_TDD
 
                 if (dice1.Type == DiceType.NormalPoints)
                 {
-                    if (dice1.Points == dice2.Points)
-                    {
-                        return dice1.MaxPoint - dice2.MaxPoint;
-                    }
+                    return CompareOfNormalPoints(dice1, dice2);
                 }
 
-                return dice1.Points - dice2.Points;
+                return 0;
             }
+
             return dice1.Type - dice2.Type;
+        }
+
+        private static int CompareOfNormalPoints(Dice dice1, Dice dice2)
+        {
+            if (dice1.Points == dice2.Points)
+            {
+                return dice1.MaxPoint - dice2.MaxPoint;
+            }
+            return dice1.Points - dice2.Points;
         }
 
         private static int CompareOfOneColor(Dice dice1, Dice dice2)
