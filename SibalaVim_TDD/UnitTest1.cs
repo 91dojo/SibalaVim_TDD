@@ -46,6 +46,7 @@ namespace SibalaVim_TDD
             var points = _dices.Where(x => x != pair);
             this.MaxPoint = points.Max();
             this.Points = points.Sum();
+            this.Type = DiceType.NormalPoints;
             return this.Points;
         }
 
@@ -85,6 +86,7 @@ namespace SibalaVim_TDD
             DiceOutputShouldBe("5 Points", 1, 1, 2, 3);
             MaxPointShouldBe(3);
             PointsShouldBe(5);
+            TypeShouldBe(DiceType.NormalPoints);
         }
 
         [TestMethod]
@@ -117,6 +119,7 @@ namespace SibalaVim_TDD
 
     public enum DiceType
     {
-        NoPoints
+        NoPoints,
+        NormalPoints
     }
 }
