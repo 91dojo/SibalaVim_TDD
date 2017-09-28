@@ -89,7 +89,12 @@ namespace SibalaVim_TDD
         {
             DiceOutputShouldBe("One Color", 1, 1, 1, 1);
             MaxPointShouldBe(1);
-            Assert.AreEqual(1, dice.Points);
+            PointsShouldBe(1);
+        }
+
+        private void PointsShouldBe(int expected)
+        {
+            Assert.AreEqual(expected, dice.Points);
         }
 
         private void DiceOutputShouldBe(string expected, int i0, int i1, int i2, int i3)
