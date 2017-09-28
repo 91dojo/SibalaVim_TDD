@@ -11,28 +11,33 @@ namespace SibalaVim_TDD
         public Dice(int i0, int i1, int i2, int i3)
         {
             this._dices = new List<int> { i0, i1, i2, i3 };
+            this.Sibala();
         }
 
         public int MaxPoint { get; set; }
         public int Points { get; set; }
         public DiceType Type { get; set; }
 
-        public string GetOutput()
+        private void Sibala()
         {
             if (IsNormalPoints())
             {
                 SetNormalPointsResult();
-                return this.Points + " Points";
+                this.Output = this.Points + " Points";
+                return;
             }
 
             if (IsOneColor())
             {
                 SetOneColorResult();
-                return "One Color";
+                this.Output = "One Color";
+                return;
             }
 
-            return "No Points";
+            this.Output = "No Points";
         }
+
+        public string Output { get; set; }
 
         private void SetOneColorResult()
         {
@@ -120,7 +125,7 @@ namespace SibalaVim_TDD
         private void DiceOutputShouldBe(string expected, int i0, int i1, int i2, int i3)
         {
             dice = new Dice(i0, i1, i2, i3);
-            Assert.AreEqual(expected, dice.GetOutput());
+            Assert.AreEqual(expected, dice.Output);
         }
     }
 
