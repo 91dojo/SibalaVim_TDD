@@ -14,6 +14,7 @@ namespace SibalaVim_TDD
         }
 
         public int MaxPoint { get; set; }
+        public int Points { get; set; }
 
         public string GetOutput()
         {
@@ -26,6 +27,7 @@ namespace SibalaVim_TDD
             if (IsOneColor())
             {
                 this.MaxPoint = _dices.First();
+                this.Points = _dices.First();
                 return "One Color";
             }
 
@@ -87,6 +89,7 @@ namespace SibalaVim_TDD
         {
             DiceOutputShouldBe("One Color", 1, 1, 1, 1);
             MaxPointShouldBe(1);
+            Assert.AreEqual(1, dice.Points);
         }
 
         private void DiceOutputShouldBe(string expected, int i0, int i1, int i2, int i3)
