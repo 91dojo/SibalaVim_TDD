@@ -19,36 +19,40 @@ namespace SibalaVim_TDD
 
         public string GetOutput()
         {
-            var diceGroups = _dices.GroupBy(x => x);
-            if (IsNormalPoints(diceGroups))
+            if (IsNormalPoints())
             {
-                return GetPoints(diceGroups) + " Points";
+                SetNormalPointsResult();
+                return this.Points + " Points";
             }
 
             if (IsOneColor())
             {
-                this.MaxPoint = _dices.First();
-                this.Points = _dices.First();
-                this.Type = DiceType.OneColor;
+                SetOneColorResult();
                 return "One Color";
             }
 
             return "No Points";
         }
 
-        private static bool IsNormalPoints(IEnumerable<IGrouping<int, int>> diceGroups)
+        private void SetOneColorResult()
         {
-            return diceGroups.Max(x => x.Count() == 2);
+            this.MaxPoint = _dices.First();
+            this.Points = _dices.First();
+            this.Type = DiceType.OneColor;
         }
 
-        private int GetPoints(IEnumerable<IGrouping<int, int>> diceGroups)
+        private bool IsNormalPoints()
         {
-            var pair = diceGroups.Where(x => x.Count() == 2).Min(x => x.Key);
+            return _dices.GroupBy(x => x).Max(x => x.Count() == 2);
+        }
+
+        private void SetNormalPointsResult()
+        {
+            var pair = _dices.GroupBy(x => x).Where(x => x.Count() == 2).Min(x => x.Key);
             var points = _dices.Where(x => x != pair);
             this.MaxPoint = points.Max();
             this.Points = points.Sum();
             this.Type = DiceType.NormalPoints;
-            return this.Points;
         }
 
         private bool IsOneColor()
