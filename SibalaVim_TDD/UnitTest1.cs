@@ -20,21 +20,25 @@ namespace SibalaVim_TDD
 
         private void Sibala()
         {
-            if (IsNormalPoints())
-            {
-                SetNormalPointsResult();
-                this.Output = this.Points + " Points";
-                return;
-            }
+            var maxCountOfSamePoint = _dices.GroupBy(x => x).Max(x => x.Count());
 
-            if (IsOneColor())
+            switch (maxCountOfSamePoint)
             {
-                SetOneColorResult();
-                this.Output = "One Color";
-                return;
+                case 2:
+                    SetNormalPointsResult();
+                    break;
+                case 4:
+                    SetOneColorResult();
+                    break;
+                default:
+                    SetNoPointsResult();
+                    break;
             }
+        }
 
-            this.Output = "No Points";
+        private string SetNoPointsResult()
+        {
+            return this.Output = "No Points";
         }
 
         public string Output { get; set; }
@@ -44,11 +48,7 @@ namespace SibalaVim_TDD
             this.MaxPoint = _dices.First();
             this.Points = _dices.First();
             this.Type = DiceType.OneColor;
-        }
-
-        private bool IsNormalPoints()
-        {
-            return _dices.GroupBy(x => x).Max(x => x.Count() == 2);
+            this.Output = "One Color";
         }
 
         private void SetNormalPointsResult()
@@ -58,6 +58,7 @@ namespace SibalaVim_TDD
             this.MaxPoint = points.Max();
             this.Points = points.Sum();
             this.Type = DiceType.NormalPoints;
+            this.Output = this.Points + " Points";
         }
 
         private bool IsOneColor()
